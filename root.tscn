@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgtgxqit5qfqk"]
+
+[ext_resource type="Material" uid="uid://beopb55avgh1e" path="res://MM_1m_Tile.tres" id="1_3ujko"]
+[ext_resource type="PackedScene" uid="uid://n7aa23r6exrn" path="res://player.tscn" id="1_82gqh"]
+[ext_resource type="PackedScene" uid="uid://4e61uv712q4k" path="res://obstacle.tscn" id="2_5tkf1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(40, 1, 40)
+material = ExtResource("1_3ujko")
+
+[node name="Player" parent="." instance=ExtResource("1_82gqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91473, 0, 2.13294)
+
+[node name="Obstacle" parent="." instance=ExtResource("2_5tkf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05798, 1.51189, -0.0480675)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.548743, -0.528924, -0.647395, 0.612438, -0.27277, 0.741968, -0.569035, -0.803639, 0.174252, 0, 7.07343, 0)

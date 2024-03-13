@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://n7aa23r6exrn"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_71ddj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u387e"]
+radius = 0.38
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4wpkb"]
+radius = 1.39988
+height = 4.36463
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_71ddj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985393, 0.170295, 0, -0.170295, 0.985393, 0, 2.83392, 2.45818)
+fov = 95.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_u387e")
+
+[node name="ForwardZone" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="ForwardZone" type="CollisionShape3D" parent="ForwardZone"]
+transform = Transform3D(1, 0, 0, 0, -0.00338588, 0.999994, 0, -0.999994, -0.00338588, 0, 1.38696, -2.42031)
+shape = SubResource("CapsuleShape3D_4wpkb")
+
+[node name="DebugTargetLocator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11387, 0)
+
+[node name="DebugTargetLine" type="CSGCylinder3D" parent="DebugTargetLocator"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+radius = 0.05
+height = 1.0
+sides = 4
+cone = true
+
+[connection signal="area_shape_entered" from="ForwardZone" to="." method="_on_forward_zone_area_shape_entered"]
+[connection signal="area_shape_exited" from="ForwardZone" to="." method="_on_forward_zone_area_shape_exited"]

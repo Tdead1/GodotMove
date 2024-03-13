@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://4e61uv712q4k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uxn42"]
+radius = 0.2
+
+[node name="Obstacle" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="Collision_Area" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collision_Shape" type="CollisionShape3D" parent="Collision_Area"]
+shape = SubResource("SphereShape3D_uxn42")
